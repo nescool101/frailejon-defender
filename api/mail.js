@@ -14,8 +14,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const user = process.env.GMAIL_SMTP_USER_NESCAO;
+  const pass = process.env.GMAIL_SMTP_PASS_NESCAO;
   if (!user || !pass) {
     res.status(500).json({ error: 'smtp not configured' });
     return;
