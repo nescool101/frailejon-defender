@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
 
+const FROM = 'nescool10001@gmail.com';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'method not allowed' });
@@ -12,10 +14,14 @@ export default async function handler(req, res) {
     return;
   }
 
-  const user = process.env.GMAIL_SMTP_USER || process.env.SMTP_FROM;
-  const pass = process.env.GMAIL_SMTP_PASS || process.env.SMTP_PASS;
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
   if (!user || !pass) {
     res.status(500).json({ error: 'smtp not configured' });
+    return;
+  }
+  if (user !== FROM) {
+    res.status(500).json({ error: 'wrong smtp account' });
     return;
   }
 
@@ -28,9 +34,9 @@ export default async function handler(req, res) {
     });
     const safe = (s) => String(s).replace(/[\r\n]+/g, ' ').slice(0, 500);
     await transporter.sendMail({
-      from: `"Frailejón Defender" <${user}>`,
+      from: `"Frailejón Defender" <${FROM}>`,
       replyTo: email,
-      to: 'nescool10001@gmail.com',
+      to: FROM,
       subject: `Frailejón Defender · ${safe(name)}`,
       text: `De: ${safe(name)} <${email}>\n\n${safe(message)}`,
     });

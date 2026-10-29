@@ -1,2 +1,2 @@
-SMTP_FROM=<agent-vault:smtp-user>
-SMTP_PASS=<agent-vault:smtp-pass>
+GMAIL_USER=<agent-vault:gmail-smtp-user>
+GMAIL_APP_PASSWORD=<agent-vault:gmail-smtp-pass>
