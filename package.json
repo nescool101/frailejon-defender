@@ -1,0 +1,7 @@
+{
+  "name": "frailejon-defender-landing",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^7.0.13"
+  }
+}
