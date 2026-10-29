@@ -1,2 +1,2 @@
-SMTP_USER=<agent-vault:smtp-user>
+SMTP_FROM=<agent-vault:smtp-user>
 SMTP_PASS=<agent-vault:smtp-pass>

@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const user = process.env.GMAIL_SMTP_USER || process.env.SMTP_FROM;
+  const pass = process.env.GMAIL_SMTP_PASS || process.env.SMTP_PASS;
   if (!user || !pass) {
     res.status(500).json({ error: 'smtp not configured' });
     return;
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: `"Frailejón Defender" <${user}>`,
       replyTo: email,
-      to: user,
+      to: 'nescool10001@gmail.com',
       subject: `Frailejón Defender · ${safe(name)}`,
       text: `De: ${safe(name)} <${email}>\n\n${safe(message)}`,
     });
